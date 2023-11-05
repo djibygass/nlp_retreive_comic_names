@@ -1,3 +1,6 @@
+"""
+Dumb model always predict 0
+"""
 class DumbModel:
     """Dumb model always predict 0"""
     def fit(self, X, y):
