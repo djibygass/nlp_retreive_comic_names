@@ -40,6 +40,33 @@ _config_ : Un dictionnaire de configuration pour activer ou désactiver certaine
 
 #### Got accuracy 91.8964824120603%
 
+## Tâches de reconnaissance d'entités nommées (NER)
+
+La tâche `is_name` vise à identifier et classer les segments de texte des titres de vidéos qui correspondent à des noms propres. Pour cela, nous utilisons une approche de machine learning qui nécessite les étapes suivantes :
+
+- **Extraction des caractéristiques**: Chaque token du titre de la vidéo est transformé en un vecteur de caractéristiques qui inclut la casse du mot, sa position dans le titre, ainsi que le contexte donné par les tokens précédents et suivants.
+- **Étiquetage**: Les tokens sont associés à des étiquettes binaires indiquant la présence (`1`) ou l'absence (`0`) d'un nom propre.
+
+## Tâche de détection de nom de comique
+
+La tâche `find_comic_name` a pour objectif de localiser et extraire les noms de comiques dans les titres de vidéos. Cette tâche peut être traitée comme un problème de classification ou de NER, en fonction de la complexité des données et des noms à identifier.
+
+## Assemblage des modèles
+
+L'assemblage des modèles fait référence à la combinaison des prédictions issues des tâches `is_name` et `find_comic_name` pour améliorer la précision globale. Nous évaluons les performances des modèles assemblés par validation croisée.
+
+## Résolution des erreurs
+
+Durant l'évaluation des modèles, il est fréquent de rencontrer des erreurs liées à la correspondance entre les caractéristiques et les étiquettes. Voici les étapes de dépannage typiques :
+
+- **Vérification de la cohérence des données**: Assurez-vous que chaque token a une étiquette correspondante.
+- **Correction des données**: Si les tokens et les étiquettes ne correspondent pas, revoir le script de préparation des données pour corriger les incohérences.
+- **Vérification après modification**: Après toute correction, vérifiez que la longueur de la matrice de caractéristiques `X` correspond au nombre d'étiquettes `y`.
+
+## Conclusion
+
+Les expériences montrent que le prétraitement des données et la sélection des caractéristiques ont un impact significatif sur la performance des modèles de machine learning. La précision obtenue dans les tâches `is_comic_video` montre l'efficacité des modèles entraînés et suggère des voies d'amélioration pour les tâches de NER et de détection de noms de comiques.
+
 
 
 
